@@ -1,5 +1,6 @@
 {
     "title": "Başlık",
     "author":"Yazar",
-    "books": "Kitaplar"
+    "books": "Kitaplar",
+    "settings":"Ayarlar"
 }

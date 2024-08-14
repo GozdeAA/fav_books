@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../settings/localization/application/localization_bloc.dart';
+import '../../settings/page/presentation/settings_page.dart';
 
 class FavouritesPage extends StatelessWidget {
   const FavouritesPage({super.key});
@@ -18,11 +19,10 @@ class FavouritesPage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                context
-                    .read<LocalizationBloc>()
-                    .add(const ChangedLocalization());
+                Navigator.of(context).push(
+                    CupertinoPageRoute(builder: (context) => SettingsPage()));
               },
-              icon: const Icon(Icons.translate))
+              icon: const Icon(Icons.settings))
         ],
       ),
       body: SafeArea(

@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../settings/localization/application/localization_bloc.dart';
+import '../../settings/page/presentation/settings_page.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key, required this.bookName});
@@ -17,10 +19,9 @@ class DetailPage extends StatelessWidget {
         backgroundColor: AppColors.primary,
         centerTitle: true,
         actions: [IconButton(onPressed: (){
-          context
-              .read<LocalizationBloc>()
-              .add(ChangedLocalization());
-        }, icon: Icon(Icons.translate))],
+          Navigator.of(context).push(
+              CupertinoPageRoute(builder: (context) => SettingsPage()));
+        }, icon: Icon(Icons.settings))],
       ),
       body: SafeArea(
           child: Padding(

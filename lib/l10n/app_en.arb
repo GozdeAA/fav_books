@@ -1,6 +1,7 @@
 {
     "title": "Title",
     "author":"Author",
-    "books": "Books"
+    "books": "Books",
+    "settings":"Settings"
 
 }

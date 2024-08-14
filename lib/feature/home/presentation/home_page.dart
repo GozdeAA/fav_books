@@ -1,5 +1,7 @@
 import 'package:fav_books/core/extensions/sizer_extension.dart';
 import 'package:fav_books/core/theme/app_colors.dart';
+import 'package:fav_books/feature/settings/page/presentation/settings_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,11 +18,14 @@ class HomePage extends StatelessWidget {
         title: Text(AppLocalizations.of(context)?.books ?? ""),
         backgroundColor: AppColors.primary,
         centerTitle: true,
-        actions: [IconButton(onPressed: (){
-          context
-              .read<LocalizationBloc>()
-              .add(ChangedLocalization());
-        }, icon: Icon(Icons.translate))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    CupertinoPageRoute(builder: (context) => SettingsPage()));
+              },
+              icon: Icon(Icons.settings))
+        ],
       ),
       body: SafeArea(
           child: Padding(

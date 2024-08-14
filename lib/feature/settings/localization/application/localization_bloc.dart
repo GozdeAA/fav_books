@@ -6,9 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'localization_event.dart';
-
 part 'localization_state.dart';
-
 part 'localization_bloc.freezed.dart';
 
 class LocalizationBloc extends Bloc<LocalizationEvent, LocalizationState> {
@@ -19,11 +17,7 @@ class LocalizationBloc extends Bloc<LocalizationEvent, LocalizationState> {
 
   FutureOr<void> _changedLocalization(
       ChangedLocalization event, Emitter<LocalizationState> emit) {
-    if (state.locale == Locale("tr")) {
-      emit(state.copyWith(locale: Locale("en")));
-    } else {
-      emit(state.copyWith(locale: Locale("tr")));
-    }
+    emit(state.copyWith(locale: event.locale));
   }
 
   FutureOr<void> _initialiseLocalization(
@@ -41,8 +35,8 @@ class LocalizationBloc extends Bloc<LocalizationEvent, LocalizationState> {
 
   Locale? isSupported(Locale applicationLocale) {
     Locale? locale = AppLocalizations.supportedLocales.firstWhere(
-        (Locale element) =>
-            applicationLocale.languageCode.split("_").first ==
+            (Locale element) =>
+        applicationLocale.languageCode.split("_").first ==
             element.languageCode);
     return locale;
   }

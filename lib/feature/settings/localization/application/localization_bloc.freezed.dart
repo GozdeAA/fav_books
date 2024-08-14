@@ -19,19 +19,19 @@ mixin _$LocalizationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initialiseLocalization,
-    required TResult Function() changedLocalization,
+    required TResult Function(Locale locale) changedLocalization,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialiseLocalization,
-    TResult? Function()? changedLocalization,
+    TResult? Function(Locale locale)? changedLocalization,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialiseLocalization,
-    TResult Function()? changedLocalization,
+    TResult Function(Locale locale)? changedLocalization,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -123,7 +123,7 @@ class _$InitialiseLocalizationImpl implements InitialiseLocalization {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initialiseLocalization,
-    required TResult Function() changedLocalization,
+    required TResult Function(Locale locale) changedLocalization,
   }) {
     return initialiseLocalization();
   }
@@ -132,7 +132,7 @@ class _$InitialiseLocalizationImpl implements InitialiseLocalization {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialiseLocalization,
-    TResult? Function()? changedLocalization,
+    TResult? Function(Locale locale)? changedLocalization,
   }) {
     return initialiseLocalization?.call();
   }
@@ -141,7 +141,7 @@ class _$InitialiseLocalizationImpl implements InitialiseLocalization {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialiseLocalization,
-    TResult Function()? changedLocalization,
+    TResult Function(Locale locale)? changedLocalization,
     required TResult orElse(),
   }) {
     if (initialiseLocalization != null) {
@@ -192,6 +192,8 @@ abstract class _$$ChangedLocalizationImplCopyWith<$Res> {
   factory _$$ChangedLocalizationImplCopyWith(_$ChangedLocalizationImpl value,
           $Res Function(_$ChangedLocalizationImpl) then) =
       __$$ChangedLocalizationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Locale locale});
 }
 
 /// @nodoc
@@ -204,55 +206,80 @@ class __$$ChangedLocalizationImplCopyWithImpl<$Res>
 
   /// Create a copy of LocalizationEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? locale = null,
+  }) {
+    return _then(_$ChangedLocalizationImpl(
+      locale: null == locale
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ChangedLocalizationImpl implements ChangedLocalization {
-  const _$ChangedLocalizationImpl();
+  const _$ChangedLocalizationImpl({required this.locale});
+
+  @override
+  final Locale locale;
 
   @override
   String toString() {
-    return 'LocalizationEvent.changedLocalization()';
+    return 'LocalizationEvent.changedLocalization(locale: $locale)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChangedLocalizationImpl);
+            other is _$ChangedLocalizationImpl &&
+            (identical(other.locale, locale) || other.locale == locale));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, locale);
+
+  /// Create a copy of LocalizationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangedLocalizationImplCopyWith<_$ChangedLocalizationImpl> get copyWith =>
+      __$$ChangedLocalizationImplCopyWithImpl<_$ChangedLocalizationImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initialiseLocalization,
-    required TResult Function() changedLocalization,
+    required TResult Function(Locale locale) changedLocalization,
   }) {
-    return changedLocalization();
+    return changedLocalization(locale);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialiseLocalization,
-    TResult? Function()? changedLocalization,
+    TResult? Function(Locale locale)? changedLocalization,
   }) {
-    return changedLocalization?.call();
+    return changedLocalization?.call(locale);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialiseLocalization,
-    TResult Function()? changedLocalization,
+    TResult Function(Locale locale)? changedLocalization,
     required TResult orElse(),
   }) {
     if (changedLocalization != null) {
-      return changedLocalization();
+      return changedLocalization(locale);
     }
     return orElse();
   }
@@ -291,7 +318,16 @@ class _$ChangedLocalizationImpl implements ChangedLocalization {
 }
 
 abstract class ChangedLocalization implements LocalizationEvent {
-  const factory ChangedLocalization() = _$ChangedLocalizationImpl;
+  const factory ChangedLocalization({required final Locale locale}) =
+      _$ChangedLocalizationImpl;
+
+  Locale get locale;
+
+  /// Create a copy of LocalizationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChangedLocalizationImplCopyWith<_$ChangedLocalizationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
