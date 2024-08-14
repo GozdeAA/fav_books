@@ -19,6 +19,7 @@ dependencies:
     sdk: flutter
   #local storage
   hive: ^2.2.3
+  path_provider: ^2.1.4
   dartz: ^0.10.1
   get_it: ^7.7.0 #todo kaldır
   freezed: ^2.5.7
@@ -35,10 +36,11 @@ dev_dependencies:
 
 
   flutter_lints: ^4.0.0
-
+  build_runner: ^2.4.12
+  hive_generator: ^2.0.1
 
 flutter:
-
+  generate: true
   uses-material-design: true
   assets:
     - assets/fonts/

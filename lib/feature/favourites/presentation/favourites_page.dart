@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../settings/localization/application/localization_bloc.dart';
 
 class FavouritesPage extends StatelessWidget {
   const FavouritesPage({super.key});
@@ -10,19 +12,28 @@ class FavouritesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Favourites"),
+        title: const Text("Favourites"),
         backgroundColor: AppColors.primary,
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                context
+                    .read<LocalizationBloc>()
+                    .add(const ChangedLocalization());
+              },
+              icon: const Icon(Icons.translate))
+        ],
       ),
       body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Scrollbar(
-              thumbVisibility: true,
-              thickness: 5,
-              child: GridView.builder(
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        padding: const EdgeInsets.all(8.0),
+        child: Scrollbar(
+          thumbVisibility: true,
+          thickness: 5,
+          child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3),
               itemBuilder: (context, i) {
                 return Column(
                   children: [
@@ -33,22 +44,25 @@ class FavouritesPage extends StatelessWidget {
                         child: Stack(
                           alignment: Alignment.topRight,
                           children: [
-                            Card(
+                            const Card(
                               child: Placeholder(),
                             ),
                             IconButton(
                                 onPressed: () {},
-                                icon: Icon(CupertinoIcons.heart_fill,color: Colors.red,)),
+                                icon: const Icon(
+                                  CupertinoIcons.heart_fill,
+                                  color: Colors.red,
+                                )),
                           ],
                         ),
                       ),
                     ),
-                    Flexible(child: Text("title"))
+                    const Flexible(child: Text("title"))
                   ],
                 );
               }),
-            ),
-          )),
+        ),
+      )),
     );
   }
 }

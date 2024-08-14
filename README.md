@@ -5,6 +5,7 @@ Flutter Tech Task
 ## Project Details
 
 books app written with bloc and domain driven design
+*** generated files included ***
 
 ## resources
 

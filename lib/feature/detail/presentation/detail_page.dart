@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../settings/localization/application/localization_bloc.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key, required this.bookName});
@@ -14,6 +16,11 @@ class DetailPage extends StatelessWidget {
         title: Text(bookName),
         backgroundColor: AppColors.primary,
         centerTitle: true,
+        actions: [IconButton(onPressed: (){
+          context
+              .read<LocalizationBloc>()
+              .add(ChangedLocalization());
+        }, icon: Icon(Icons.translate))],
       ),
       body: SafeArea(
           child: Padding(
