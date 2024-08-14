@@ -21,7 +21,6 @@ dependencies:
   hive: ^2.2.3
   path_provider: ^2.1.4
   dartz: ^0.10.1
-  get_it: ^7.7.0 #todo kaldır
   freezed: ^2.5.7
   freezed_annotation: ^2.4.4
   #notifications
@@ -29,6 +28,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   #svg files
   flutter_svg: ^2.0.9
+  internet_connection_checker: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:

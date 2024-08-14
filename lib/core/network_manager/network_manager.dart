@@ -19,7 +19,7 @@ class HttpHelper {
   }
 
   static Future<Response> get(String url,
-      {bool? cookie, Map<String, dynamic>? parameter}) async {
+      {Map<String, dynamic>? parameter}) async {
     final instance = await _getInstance();
     return instance.get(_baseUrl + url, queryParameters: parameter);
   }

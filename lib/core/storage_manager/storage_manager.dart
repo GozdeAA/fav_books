@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../constants/box_constants.dart';
+
 class StorageManager extends IStorageManager {
   static StorageManager? _cacheManager;
   static StorageManager get cacheManager =>
@@ -16,8 +18,10 @@ class StorageManager extends IStorageManager {
   Future<void> setUpHive() async {
     await initHive();
     Hive.registerAdapter(BookModelAdapter());
+    Hive.registerAdapter(BookAdapter());
+    Hive.registerAdapter(VillainAdapter());
 
-  //  await Hive.openBox<SettingsOfUser>(BoxConstants.settingsOfUsersBox);
+    await Hive.openBox<BookModel>(BoxConstants.books);
 
   }
 
