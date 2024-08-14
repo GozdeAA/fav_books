@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bloc/bloc.dart';
 import 'package:fav_books/core/constants/box_constants.dart';
 import 'package:fav_books/core/models/book_model.dart';
@@ -24,6 +25,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _getAllBooks(GetAllBooks event, Emitter<HomeState> emit) async {
+
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed) {
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+    });
     add(GetLocalBooks(context: event.context));
     if (await InternetConnectionChecker().hasConnection) {
       emit(state.copyWith(noConnection: false));
