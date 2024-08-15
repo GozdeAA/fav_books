@@ -26,6 +26,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<AddToFavs>(_addToFavs);
     on<RemoveFromFavs>(_removeFromFavs);
     on<GetFavourites>(_getFavourites);
+    on<ActivateSearch>(_activateSearch);
+    on<Search>(_search);
+    on<DeactivateSearch>(_deactivateSearch);
   }
 
   Future<void> _getAllBooks(GetAllBooks event, Emitter<HomeState> emit) async {
@@ -51,9 +54,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _fetchBooks(FetchAllBooks event, Emitter<HomeState> emit) async {
     try {
-      var res = await HttpHelper.get("books");
+      final res = await HttpHelper.get("books");
       if (res.data != null) {
-        var fetchedBooks = BookModel.fromJson(res.data as Map<String,dynamic>);
+        final fetchedBooks =
+            BookModel.fromJson(res.data as Map<String, dynamic>);
         emit(state.copyWith(fetchedBooks: fetchedBooks.data ?? []));
         if (fetchedBooks.data != null && fetchedBooks.data!.isNotEmpty) {
           StorageManager.instance.deleteValueWithKey<BookModel>(
@@ -66,8 +70,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         }
       } else {
         if (event.context.mounted) {
-          ScaffoldMessenger.of(event.context)
-              .showSnackBar(const SnackBar(content: Text("could not fetch books")));
+          ScaffoldMessenger.of(event.context).showSnackBar(
+              const SnackBar(content: Text("could not fetch books")));
         }
       }
     } catch (e) {
@@ -80,9 +84,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> _getLocalBooks(GetLocalBooks event, Emitter<HomeState> emit) {
-    var myBooks = StorageManager.instance
+    final myBooks = StorageManager.instance
         .getValueWithKey<BookModel>(boxName: BoxConstants.books, key: "books");
-    var favs = StorageManager.instance.getValueWithKey<BookModel>(
+    final favs = StorageManager.instance.getValueWithKey<BookModel>(
         boxName: BoxConstants.books, key: "fav_books");
 
     if (state.myBooks.isEmpty && myBooks != null && myBooks.data != null) {
@@ -96,8 +100,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _removeFromFavs(
       RemoveFromFavs event, Emitter<HomeState> emit) {
     try {
-      var bookList = state.myBooks.toList();
-      var favs = state.favBooks.toList();
+      final bookList = state.myBooks.toList();
+      final favs = state.favBooks.toList();
       if (favs.contains(event.book)) {
         favs.remove(event.book);
         bookList.add(event.book.copyWith(isFav: false));
@@ -123,9 +127,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> _addToFavs(AddToFavs event, Emitter<HomeState> emit) {
-    var booklist = state.myBooks.toList();
+    final booklist = state.myBooks.toList();
     booklist.removeWhere((t) => t == event.book);
-    var favs = state.favBooks.toList();
+    final favs = state.favBooks.toList();
     favs.add(event.book.copyWith(isFav: true));
     StorageManager.instance.deleteValueWithKey<BookModel>(
         key: "books", boxName: BoxConstants.books);
@@ -141,10 +145,31 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> _getFavourites(GetFavourites event, Emitter<HomeState> emit) {
-    var books = StorageManager.instance.getValueWithKey<BookModel>(
+    final books = StorageManager.instance.getValueWithKey<BookModel>(
         boxName: BoxConstants.books, key: "fav_books");
     if (books != null && books.data != null) {
       emit(state.copyWith(favBooks: books.data!));
     }
+  }
+
+  FutureOr<void> _activateSearch(
+      ActivateSearch event, Emitter<HomeState> emit) {
+    emit(state.copyWith(searchOn: true));
+  }
+
+  FutureOr<void> _search(Search event, Emitter<HomeState> emit) {
+    final list = state.myBooks.toList();
+    if (event.text.isNotEmpty && event.text.length >= 3) {
+      final e = list
+          .where((t) => t.title!.toLowerCase().contains(event.text))
+          .toList();
+      emit(state.copyWith(searchList: e));
+    }
+  }
+
+  FutureOr<void> _deactivateSearch(
+      DeactivateSearch event, Emitter<HomeState> emit) {
+    emit(state.copyWith(searchOn: false,searchList: []));
+    state.controller.clear();
   }
 }
