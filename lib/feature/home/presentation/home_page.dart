@@ -2,6 +2,7 @@ import 'package:fav_books/core/extensions/sizer_extension.dart';
 import 'package:fav_books/core/models/book_model.dart';
 import 'package:fav_books/core/theme/app_colors.dart';
 import 'package:fav_books/feature/detail/presentation/detail_page.dart';
+import 'package:fav_books/feature/favourites/application/favourites_bloc.dart';
 import 'package:fav_books/feature/favourites/presentation/favourites_page.dart';
 import 'package:fav_books/feature/settings/page/presentation/settings_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,9 +43,13 @@ class HomePage extends StatelessWidget {
                 // if (state.favBooks.isNotEmpty)
                 booksList(context,
                     title: "Favourite books",
-                    bookList: state.favBooks,
-                    onTap: () => Navigator.of(context).push(CupertinoPageRoute(
-                        builder: (c) => const FavouritesPage()))),
+                    bookList: state.favBooks, onTap: () {
+                  context
+                      .read<FavouritesBloc>()
+                      .add(FavouritesEvent.getFavourites(context: context));
+                  Navigator.of(context).push(CupertinoPageRoute(
+                      builder: (c) => const FavouritesPage()));
+                }),
                 if (state.myBooks.isNotEmpty)
                   booksList(context,
                       title: "My books", bookList: state.myBooks),
@@ -78,8 +83,7 @@ class HomePage extends StatelessWidget {
                   fontSize: 17.sp(context), fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 1.h(context)),
-            if(bookList.isEmpty)
-              Center(child: Text("No books available")),
+            if (bookList.isEmpty) Center(child: Text("No books available")),
             Expanded(
               child: ListView.builder(
                   itemCount: bookList.length,

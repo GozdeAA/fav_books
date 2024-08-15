@@ -1,5 +1,6 @@
 import 'package:fav_books/core/storage_manager/storage_manager.dart';
 import 'package:fav_books/core/theme/app_colors.dart';
+import 'package:fav_books/feature/favourites/application/favourites_bloc.dart';
 import 'package:fav_books/feature/home/application/home_bloc.dart';
 import 'package:fav_books/feature/home/presentation/home_page.dart';
 import 'package:fav_books/feature/settings/page/application/settings_bloc.dart';
@@ -22,6 +23,7 @@ Future<void> main() async {
         lazy: false,
         create: (context) => ThemeBloc()..add(const InitialTheme())),
     BlocProvider(create: (context) => SettingsBloc()),
+    BlocProvider(create: (context)=>FavouritesBloc()..add(FavouritesEvent.getFavourites(context: context))),
     BlocProvider(
         create: (context) => HomeBloc()..add(GetAllBooks(context: context))),
     BlocProvider(

@@ -24,6 +24,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetLocalBooks>(_getLocalBooks);
     on<AddToFavs>(_addToFavs);
     on<RemoveFromFavs>(_removeFromFavs);
+    on<GetFavourites>(_getFavourites);
   }
 
   Future<void> _getAllBooks(GetAllBooks event, Emitter<HomeState> emit) async {
@@ -122,5 +123,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         boxName: BoxConstants.books,
         key: "fav_books");
     emit(state.copyWith(myBooks: booklist, favBooks: favs));
+  }
+
+  FutureOr<void> _getFavourites(GetFavourites event, Emitter<HomeState> emit) {
+    var books = StorageManager.instance.getValueWithKey<BookModel>(
+        boxName: BoxConstants.books, key: "fav_books");
+    if (books != null && books.data != null) {
+      emit(state.copyWith(favBooks: books.data!));
+    }
   }
 }
