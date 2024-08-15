@@ -32,7 +32,7 @@ class DetailPage extends StatelessWidget {
           ),
           body: SafeArea(
               child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: Column(
                     children: [
                       Table(
@@ -122,15 +122,14 @@ class DetailPage extends StatelessWidget {
     }
   }
 
-  //todo create info list widget
   TableRow buildTableRow({required String title, required String content}) {
     return TableRow(children: [
       Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: Text(title),
       ),
       Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: Text(content),
       ),
     ],);
