@@ -23,6 +23,12 @@ mixin _$HomeEvent {
     required TResult Function(BuildContext context) getLocalBooks,
     required TResult Function(BuildContext context) getAllBooks,
     required TResult Function(BuildContext context) getFavourites,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        addToFavs,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        removeFromFavs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +38,10 @@ mixin _$HomeEvent {
     TResult? Function(BuildContext context)? getLocalBooks,
     TResult? Function(BuildContext context)? getAllBooks,
     TResult? Function(BuildContext context)? getFavourites,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +51,10 @@ mixin _$HomeEvent {
     TResult Function(BuildContext context)? getLocalBooks,
     TResult Function(BuildContext context)? getAllBooks,
     TResult Function(BuildContext context)? getFavourites,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +65,8 @@ mixin _$HomeEvent {
     required TResult Function(GetLocalBooks value) getLocalBooks,
     required TResult Function(GetAllBooks value) getAllBooks,
     required TResult Function(GetFavourites value) getFavourites,
+    required TResult Function(AddToFavs value) addToFavs,
+    required TResult Function(RemoveFromFavs value) removeFromFavs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +76,8 @@ mixin _$HomeEvent {
     TResult? Function(GetLocalBooks value)? getLocalBooks,
     TResult? Function(GetAllBooks value)? getAllBooks,
     TResult? Function(GetFavourites value)? getFavourites,
+    TResult? Function(AddToFavs value)? addToFavs,
+    TResult? Function(RemoveFromFavs value)? removeFromFavs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +87,8 @@ mixin _$HomeEvent {
     TResult Function(GetLocalBooks value)? getLocalBooks,
     TResult Function(GetAllBooks value)? getAllBooks,
     TResult Function(GetFavourites value)? getFavourites,
+    TResult Function(AddToFavs value)? addToFavs,
+    TResult Function(RemoveFromFavs value)? removeFromFavs,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,6 +160,12 @@ class _$StartedImpl implements _Started {
     required TResult Function(BuildContext context) getLocalBooks,
     required TResult Function(BuildContext context) getAllBooks,
     required TResult Function(BuildContext context) getFavourites,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        addToFavs,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        removeFromFavs,
   }) {
     return started();
   }
@@ -152,6 +178,10 @@ class _$StartedImpl implements _Started {
     TResult? Function(BuildContext context)? getLocalBooks,
     TResult? Function(BuildContext context)? getAllBooks,
     TResult? Function(BuildContext context)? getFavourites,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
   }) {
     return started?.call();
   }
@@ -164,6 +194,10 @@ class _$StartedImpl implements _Started {
     TResult Function(BuildContext context)? getLocalBooks,
     TResult Function(BuildContext context)? getAllBooks,
     TResult Function(BuildContext context)? getFavourites,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -180,6 +214,8 @@ class _$StartedImpl implements _Started {
     required TResult Function(GetLocalBooks value) getLocalBooks,
     required TResult Function(GetAllBooks value) getAllBooks,
     required TResult Function(GetFavourites value) getFavourites,
+    required TResult Function(AddToFavs value) addToFavs,
+    required TResult Function(RemoveFromFavs value) removeFromFavs,
   }) {
     return started(this);
   }
@@ -192,6 +228,8 @@ class _$StartedImpl implements _Started {
     TResult? Function(GetLocalBooks value)? getLocalBooks,
     TResult? Function(GetAllBooks value)? getAllBooks,
     TResult? Function(GetFavourites value)? getFavourites,
+    TResult? Function(AddToFavs value)? addToFavs,
+    TResult? Function(RemoveFromFavs value)? removeFromFavs,
   }) {
     return started?.call(this);
   }
@@ -204,6 +242,8 @@ class _$StartedImpl implements _Started {
     TResult Function(GetLocalBooks value)? getLocalBooks,
     TResult Function(GetAllBooks value)? getAllBooks,
     TResult Function(GetFavourites value)? getFavourites,
+    TResult Function(AddToFavs value)? addToFavs,
+    TResult Function(RemoveFromFavs value)? removeFromFavs,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -290,6 +330,12 @@ class _$FetchAllBooksImpl implements FetchAllBooks {
     required TResult Function(BuildContext context) getLocalBooks,
     required TResult Function(BuildContext context) getAllBooks,
     required TResult Function(BuildContext context) getFavourites,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        addToFavs,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        removeFromFavs,
   }) {
     return fetchAllBooks(context);
   }
@@ -302,6 +348,10 @@ class _$FetchAllBooksImpl implements FetchAllBooks {
     TResult? Function(BuildContext context)? getLocalBooks,
     TResult? Function(BuildContext context)? getAllBooks,
     TResult? Function(BuildContext context)? getFavourites,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
   }) {
     return fetchAllBooks?.call(context);
   }
@@ -314,6 +364,10 @@ class _$FetchAllBooksImpl implements FetchAllBooks {
     TResult Function(BuildContext context)? getLocalBooks,
     TResult Function(BuildContext context)? getAllBooks,
     TResult Function(BuildContext context)? getFavourites,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
     required TResult orElse(),
   }) {
     if (fetchAllBooks != null) {
@@ -330,6 +384,8 @@ class _$FetchAllBooksImpl implements FetchAllBooks {
     required TResult Function(GetLocalBooks value) getLocalBooks,
     required TResult Function(GetAllBooks value) getAllBooks,
     required TResult Function(GetFavourites value) getFavourites,
+    required TResult Function(AddToFavs value) addToFavs,
+    required TResult Function(RemoveFromFavs value) removeFromFavs,
   }) {
     return fetchAllBooks(this);
   }
@@ -342,6 +398,8 @@ class _$FetchAllBooksImpl implements FetchAllBooks {
     TResult? Function(GetLocalBooks value)? getLocalBooks,
     TResult? Function(GetAllBooks value)? getAllBooks,
     TResult? Function(GetFavourites value)? getFavourites,
+    TResult? Function(AddToFavs value)? addToFavs,
+    TResult? Function(RemoveFromFavs value)? removeFromFavs,
   }) {
     return fetchAllBooks?.call(this);
   }
@@ -354,6 +412,8 @@ class _$FetchAllBooksImpl implements FetchAllBooks {
     TResult Function(GetLocalBooks value)? getLocalBooks,
     TResult Function(GetAllBooks value)? getAllBooks,
     TResult Function(GetFavourites value)? getFavourites,
+    TResult Function(AddToFavs value)? addToFavs,
+    TResult Function(RemoveFromFavs value)? removeFromFavs,
     required TResult orElse(),
   }) {
     if (fetchAllBooks != null) {
@@ -449,6 +509,12 @@ class _$GetLocalBooksImpl implements GetLocalBooks {
     required TResult Function(BuildContext context) getLocalBooks,
     required TResult Function(BuildContext context) getAllBooks,
     required TResult Function(BuildContext context) getFavourites,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        addToFavs,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        removeFromFavs,
   }) {
     return getLocalBooks(context);
   }
@@ -461,6 +527,10 @@ class _$GetLocalBooksImpl implements GetLocalBooks {
     TResult? Function(BuildContext context)? getLocalBooks,
     TResult? Function(BuildContext context)? getAllBooks,
     TResult? Function(BuildContext context)? getFavourites,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
   }) {
     return getLocalBooks?.call(context);
   }
@@ -473,6 +543,10 @@ class _$GetLocalBooksImpl implements GetLocalBooks {
     TResult Function(BuildContext context)? getLocalBooks,
     TResult Function(BuildContext context)? getAllBooks,
     TResult Function(BuildContext context)? getFavourites,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
     required TResult orElse(),
   }) {
     if (getLocalBooks != null) {
@@ -489,6 +563,8 @@ class _$GetLocalBooksImpl implements GetLocalBooks {
     required TResult Function(GetLocalBooks value) getLocalBooks,
     required TResult Function(GetAllBooks value) getAllBooks,
     required TResult Function(GetFavourites value) getFavourites,
+    required TResult Function(AddToFavs value) addToFavs,
+    required TResult Function(RemoveFromFavs value) removeFromFavs,
   }) {
     return getLocalBooks(this);
   }
@@ -501,6 +577,8 @@ class _$GetLocalBooksImpl implements GetLocalBooks {
     TResult? Function(GetLocalBooks value)? getLocalBooks,
     TResult? Function(GetAllBooks value)? getAllBooks,
     TResult? Function(GetFavourites value)? getFavourites,
+    TResult? Function(AddToFavs value)? addToFavs,
+    TResult? Function(RemoveFromFavs value)? removeFromFavs,
   }) {
     return getLocalBooks?.call(this);
   }
@@ -513,6 +591,8 @@ class _$GetLocalBooksImpl implements GetLocalBooks {
     TResult Function(GetLocalBooks value)? getLocalBooks,
     TResult Function(GetAllBooks value)? getAllBooks,
     TResult Function(GetFavourites value)? getFavourites,
+    TResult Function(AddToFavs value)? addToFavs,
+    TResult Function(RemoveFromFavs value)? removeFromFavs,
     required TResult orElse(),
   }) {
     if (getLocalBooks != null) {
@@ -608,6 +688,12 @@ class _$GetAllBooksImpl implements GetAllBooks {
     required TResult Function(BuildContext context) getLocalBooks,
     required TResult Function(BuildContext context) getAllBooks,
     required TResult Function(BuildContext context) getFavourites,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        addToFavs,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        removeFromFavs,
   }) {
     return getAllBooks(context);
   }
@@ -620,6 +706,10 @@ class _$GetAllBooksImpl implements GetAllBooks {
     TResult? Function(BuildContext context)? getLocalBooks,
     TResult? Function(BuildContext context)? getAllBooks,
     TResult? Function(BuildContext context)? getFavourites,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
   }) {
     return getAllBooks?.call(context);
   }
@@ -632,6 +722,10 @@ class _$GetAllBooksImpl implements GetAllBooks {
     TResult Function(BuildContext context)? getLocalBooks,
     TResult Function(BuildContext context)? getAllBooks,
     TResult Function(BuildContext context)? getFavourites,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
     required TResult orElse(),
   }) {
     if (getAllBooks != null) {
@@ -648,6 +742,8 @@ class _$GetAllBooksImpl implements GetAllBooks {
     required TResult Function(GetLocalBooks value) getLocalBooks,
     required TResult Function(GetAllBooks value) getAllBooks,
     required TResult Function(GetFavourites value) getFavourites,
+    required TResult Function(AddToFavs value) addToFavs,
+    required TResult Function(RemoveFromFavs value) removeFromFavs,
   }) {
     return getAllBooks(this);
   }
@@ -660,6 +756,8 @@ class _$GetAllBooksImpl implements GetAllBooks {
     TResult? Function(GetLocalBooks value)? getLocalBooks,
     TResult? Function(GetAllBooks value)? getAllBooks,
     TResult? Function(GetFavourites value)? getFavourites,
+    TResult? Function(AddToFavs value)? addToFavs,
+    TResult? Function(RemoveFromFavs value)? removeFromFavs,
   }) {
     return getAllBooks?.call(this);
   }
@@ -672,6 +770,8 @@ class _$GetAllBooksImpl implements GetAllBooks {
     TResult Function(GetLocalBooks value)? getLocalBooks,
     TResult Function(GetAllBooks value)? getAllBooks,
     TResult Function(GetFavourites value)? getFavourites,
+    TResult Function(AddToFavs value)? addToFavs,
+    TResult Function(RemoveFromFavs value)? removeFromFavs,
     required TResult orElse(),
   }) {
     if (getAllBooks != null) {
@@ -767,6 +867,12 @@ class _$GetFavouritesImpl implements GetFavourites {
     required TResult Function(BuildContext context) getLocalBooks,
     required TResult Function(BuildContext context) getAllBooks,
     required TResult Function(BuildContext context) getFavourites,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        addToFavs,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        removeFromFavs,
   }) {
     return getFavourites(context);
   }
@@ -779,6 +885,10 @@ class _$GetFavouritesImpl implements GetFavourites {
     TResult? Function(BuildContext context)? getLocalBooks,
     TResult? Function(BuildContext context)? getAllBooks,
     TResult? Function(BuildContext context)? getFavourites,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
   }) {
     return getFavourites?.call(context);
   }
@@ -791,6 +901,10 @@ class _$GetFavouritesImpl implements GetFavourites {
     TResult Function(BuildContext context)? getLocalBooks,
     TResult Function(BuildContext context)? getAllBooks,
     TResult Function(BuildContext context)? getFavourites,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
     required TResult orElse(),
   }) {
     if (getFavourites != null) {
@@ -807,6 +921,8 @@ class _$GetFavouritesImpl implements GetFavourites {
     required TResult Function(GetLocalBooks value) getLocalBooks,
     required TResult Function(GetAllBooks value) getAllBooks,
     required TResult Function(GetFavourites value) getFavourites,
+    required TResult Function(AddToFavs value) addToFavs,
+    required TResult Function(RemoveFromFavs value) removeFromFavs,
   }) {
     return getFavourites(this);
   }
@@ -819,6 +935,8 @@ class _$GetFavouritesImpl implements GetFavourites {
     TResult? Function(GetLocalBooks value)? getLocalBooks,
     TResult? Function(GetAllBooks value)? getAllBooks,
     TResult? Function(GetFavourites value)? getFavourites,
+    TResult? Function(AddToFavs value)? addToFavs,
+    TResult? Function(RemoveFromFavs value)? removeFromFavs,
   }) {
     return getFavourites?.call(this);
   }
@@ -831,6 +949,8 @@ class _$GetFavouritesImpl implements GetFavourites {
     TResult Function(GetLocalBooks value)? getLocalBooks,
     TResult Function(GetAllBooks value)? getAllBooks,
     TResult Function(GetFavourites value)? getFavourites,
+    TResult Function(AddToFavs value)? addToFavs,
+    TResult Function(RemoveFromFavs value)? removeFromFavs,
     required TResult orElse(),
   }) {
     if (getFavourites != null) {
@@ -850,6 +970,425 @@ abstract class GetFavourites implements HomeEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetFavouritesImplCopyWith<_$GetFavouritesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddToFavsImplCopyWith<$Res> {
+  factory _$$AddToFavsImplCopyWith(
+          _$AddToFavsImpl value, $Res Function(_$AddToFavsImpl) then) =
+      __$$AddToFavsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BuildContext context, Book book, List<Book> bookList});
+}
+
+/// @nodoc
+class __$$AddToFavsImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$AddToFavsImpl>
+    implements _$$AddToFavsImplCopyWith<$Res> {
+  __$$AddToFavsImplCopyWithImpl(
+      _$AddToFavsImpl _value, $Res Function(_$AddToFavsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? context = null,
+    Object? book = null,
+    Object? bookList = null,
+  }) {
+    return _then(_$AddToFavsImpl(
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+      book: null == book
+          ? _value.book
+          : book // ignore: cast_nullable_to_non_nullable
+              as Book,
+      bookList: null == bookList
+          ? _value._bookList
+          : bookList // ignore: cast_nullable_to_non_nullable
+              as List<Book>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddToFavsImpl implements AddToFavs {
+  const _$AddToFavsImpl(
+      {required this.context,
+      required this.book,
+      required final List<Book> bookList})
+      : _bookList = bookList;
+
+  @override
+  final BuildContext context;
+  @override
+  final Book book;
+  final List<Book> _bookList;
+  @override
+  List<Book> get bookList {
+    if (_bookList is EqualUnmodifiableListView) return _bookList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bookList);
+  }
+
+  @override
+  String toString() {
+    return 'HomeEvent.addToFavs(context: $context, book: $book, bookList: $bookList)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddToFavsImpl &&
+            (identical(other.context, context) || other.context == context) &&
+            (identical(other.book, book) || other.book == book) &&
+            const DeepCollectionEquality().equals(other._bookList, _bookList));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, context, book,
+      const DeepCollectionEquality().hash(_bookList));
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddToFavsImplCopyWith<_$AddToFavsImpl> get copyWith =>
+      __$$AddToFavsImplCopyWithImpl<_$AddToFavsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(BuildContext context) fetchAllBooks,
+    required TResult Function(BuildContext context) getLocalBooks,
+    required TResult Function(BuildContext context) getAllBooks,
+    required TResult Function(BuildContext context) getFavourites,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        addToFavs,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        removeFromFavs,
+  }) {
+    return addToFavs(context, book, bookList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(BuildContext context)? fetchAllBooks,
+    TResult? Function(BuildContext context)? getLocalBooks,
+    TResult? Function(BuildContext context)? getAllBooks,
+    TResult? Function(BuildContext context)? getFavourites,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
+  }) {
+    return addToFavs?.call(context, book, bookList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(BuildContext context)? fetchAllBooks,
+    TResult Function(BuildContext context)? getLocalBooks,
+    TResult Function(BuildContext context)? getAllBooks,
+    TResult Function(BuildContext context)? getFavourites,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
+    required TResult orElse(),
+  }) {
+    if (addToFavs != null) {
+      return addToFavs(context, book, bookList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(FetchAllBooks value) fetchAllBooks,
+    required TResult Function(GetLocalBooks value) getLocalBooks,
+    required TResult Function(GetAllBooks value) getAllBooks,
+    required TResult Function(GetFavourites value) getFavourites,
+    required TResult Function(AddToFavs value) addToFavs,
+    required TResult Function(RemoveFromFavs value) removeFromFavs,
+  }) {
+    return addToFavs(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(FetchAllBooks value)? fetchAllBooks,
+    TResult? Function(GetLocalBooks value)? getLocalBooks,
+    TResult? Function(GetAllBooks value)? getAllBooks,
+    TResult? Function(GetFavourites value)? getFavourites,
+    TResult? Function(AddToFavs value)? addToFavs,
+    TResult? Function(RemoveFromFavs value)? removeFromFavs,
+  }) {
+    return addToFavs?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(FetchAllBooks value)? fetchAllBooks,
+    TResult Function(GetLocalBooks value)? getLocalBooks,
+    TResult Function(GetAllBooks value)? getAllBooks,
+    TResult Function(GetFavourites value)? getFavourites,
+    TResult Function(AddToFavs value)? addToFavs,
+    TResult Function(RemoveFromFavs value)? removeFromFavs,
+    required TResult orElse(),
+  }) {
+    if (addToFavs != null) {
+      return addToFavs(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddToFavs implements HomeEvent {
+  const factory AddToFavs(
+      {required final BuildContext context,
+      required final Book book,
+      required final List<Book> bookList}) = _$AddToFavsImpl;
+
+  BuildContext get context;
+  Book get book;
+  List<Book> get bookList;
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddToFavsImplCopyWith<_$AddToFavsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RemoveFromFavsImplCopyWith<$Res> {
+  factory _$$RemoveFromFavsImplCopyWith(_$RemoveFromFavsImpl value,
+          $Res Function(_$RemoveFromFavsImpl) then) =
+      __$$RemoveFromFavsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({BuildContext context, Book book, List<Book> bookList});
+}
+
+/// @nodoc
+class __$$RemoveFromFavsImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$RemoveFromFavsImpl>
+    implements _$$RemoveFromFavsImplCopyWith<$Res> {
+  __$$RemoveFromFavsImplCopyWithImpl(
+      _$RemoveFromFavsImpl _value, $Res Function(_$RemoveFromFavsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? context = null,
+    Object? book = null,
+    Object? bookList = null,
+  }) {
+    return _then(_$RemoveFromFavsImpl(
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+      book: null == book
+          ? _value.book
+          : book // ignore: cast_nullable_to_non_nullable
+              as Book,
+      bookList: null == bookList
+          ? _value._bookList
+          : bookList // ignore: cast_nullable_to_non_nullable
+              as List<Book>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RemoveFromFavsImpl implements RemoveFromFavs {
+  const _$RemoveFromFavsImpl(
+      {required this.context,
+      required this.book,
+      required final List<Book> bookList})
+      : _bookList = bookList;
+
+  @override
+  final BuildContext context;
+  @override
+  final Book book;
+  final List<Book> _bookList;
+  @override
+  List<Book> get bookList {
+    if (_bookList is EqualUnmodifiableListView) return _bookList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bookList);
+  }
+
+  @override
+  String toString() {
+    return 'HomeEvent.removeFromFavs(context: $context, book: $book, bookList: $bookList)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoveFromFavsImpl &&
+            (identical(other.context, context) || other.context == context) &&
+            (identical(other.book, book) || other.book == book) &&
+            const DeepCollectionEquality().equals(other._bookList, _bookList));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, context, book,
+      const DeepCollectionEquality().hash(_bookList));
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoveFromFavsImplCopyWith<_$RemoveFromFavsImpl> get copyWith =>
+      __$$RemoveFromFavsImplCopyWithImpl<_$RemoveFromFavsImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(BuildContext context) fetchAllBooks,
+    required TResult Function(BuildContext context) getLocalBooks,
+    required TResult Function(BuildContext context) getAllBooks,
+    required TResult Function(BuildContext context) getFavourites,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        addToFavs,
+    required TResult Function(
+            BuildContext context, Book book, List<Book> bookList)
+        removeFromFavs,
+  }) {
+    return removeFromFavs(context, book, bookList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(BuildContext context)? fetchAllBooks,
+    TResult? Function(BuildContext context)? getLocalBooks,
+    TResult? Function(BuildContext context)? getAllBooks,
+    TResult? Function(BuildContext context)? getFavourites,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult? Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
+  }) {
+    return removeFromFavs?.call(context, book, bookList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(BuildContext context)? fetchAllBooks,
+    TResult Function(BuildContext context)? getLocalBooks,
+    TResult Function(BuildContext context)? getAllBooks,
+    TResult Function(BuildContext context)? getFavourites,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        addToFavs,
+    TResult Function(BuildContext context, Book book, List<Book> bookList)?
+        removeFromFavs,
+    required TResult orElse(),
+  }) {
+    if (removeFromFavs != null) {
+      return removeFromFavs(context, book, bookList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(FetchAllBooks value) fetchAllBooks,
+    required TResult Function(GetLocalBooks value) getLocalBooks,
+    required TResult Function(GetAllBooks value) getAllBooks,
+    required TResult Function(GetFavourites value) getFavourites,
+    required TResult Function(AddToFavs value) addToFavs,
+    required TResult Function(RemoveFromFavs value) removeFromFavs,
+  }) {
+    return removeFromFavs(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(FetchAllBooks value)? fetchAllBooks,
+    TResult? Function(GetLocalBooks value)? getLocalBooks,
+    TResult? Function(GetAllBooks value)? getAllBooks,
+    TResult? Function(GetFavourites value)? getFavourites,
+    TResult? Function(AddToFavs value)? addToFavs,
+    TResult? Function(RemoveFromFavs value)? removeFromFavs,
+  }) {
+    return removeFromFavs?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(FetchAllBooks value)? fetchAllBooks,
+    TResult Function(GetLocalBooks value)? getLocalBooks,
+    TResult Function(GetAllBooks value)? getAllBooks,
+    TResult Function(GetFavourites value)? getFavourites,
+    TResult Function(AddToFavs value)? addToFavs,
+    TResult Function(RemoveFromFavs value)? removeFromFavs,
+    required TResult orElse(),
+  }) {
+    if (removeFromFavs != null) {
+      return removeFromFavs(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RemoveFromFavs implements HomeEvent {
+  const factory RemoveFromFavs(
+      {required final BuildContext context,
+      required final Book book,
+      required final List<Book> bookList}) = _$RemoveFromFavsImpl;
+
+  BuildContext get context;
+  Book get book;
+  List<Book> get bookList;
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RemoveFromFavsImplCopyWith<_$RemoveFromFavsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

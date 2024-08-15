@@ -22,10 +22,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetAllBooks>(_getAllBooks);
     on<FetchAllBooks>(_fetchBooks);
     on<GetLocalBooks>(_getLocalBooks);
+    on<AddToFavs>(_addToFavs);
+    on<RemoveFromFavs>(_removeFromFavs);
   }
 
   Future<void> _getAllBooks(GetAllBooks event, Emitter<HomeState> emit) async {
-
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
       if (!isAllowed) {
         AwesomeNotifications().requestPermissionToSendNotifications();
@@ -38,8 +39,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } else {
       emit(state.copyWith(noConnection: true));
       //fixme
-      ScaffoldMessenger.of(event.context)
-          .showSnackBar(SnackBar(content: Text("No internet connection")));
+      ScaffoldMessenger.of(event.context).showSnackBar(
+          const SnackBar(content: Text("No internet connection")));
     }
   }
 
@@ -49,20 +50,77 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       var fetchedBooks = BookModel.fromJson(res.data);
       emit(state.copyWith(fetchedBooks: fetchedBooks.data ?? []));
       if (fetchedBooks.data != null && fetchedBooks.data!.isNotEmpty) {
-        StorageManager.cacheManager.deleteValueWithKey<BookModel>(
+        StorageManager.instance.deleteValueWithKey<BookModel>(
             key: "books", boxName: BoxConstants.books);
-        StorageManager.cacheManager.addValueWithKey(
+        StorageManager.instance.addValueWithKey(
             data: fetchedBooks, boxName: BoxConstants.books, key: "books");
+        add(GetAllBooks(context: event.context));
       }
     }
   }
 
   FutureOr<void> _getLocalBooks(GetLocalBooks event, Emitter<HomeState> emit) {
-    var local = StorageManager.cacheManager
-        .getAllValue<BookModel>(boxName: BoxConstants.books)
-        .last;
-    if (local.data != null && local.data!.isNotEmpty) {
-      emit(state.copyWith(myBooks: local.data!));
+    var myBooks = StorageManager.instance
+        .getValueWithKey<BookModel>(boxName: BoxConstants.books, key: "books");
+    var favs = StorageManager.instance.getValueWithKey<BookModel>(
+        boxName: BoxConstants.books, key: "fav_books");
+
+    if (state.myBooks.isEmpty && myBooks != null && myBooks.data != null) {
+      emit(state.copyWith(myBooks: myBooks.data!));
     }
+    if (state.favBooks.isEmpty && favs != null && favs.data != null) {
+      emit(state.copyWith(favBooks: favs.data!));
+    }
+  }
+
+  FutureOr<void> _removeFromFavs(
+      RemoveFromFavs event, Emitter<HomeState> emit) {
+    try {
+      var bookList = state.myBooks.toList();
+      var favs = state.favBooks.toList();
+      if (favs.contains(event.book)) {
+        favs.remove(event.book);
+        bookList.add(event.book.copyWith(isFav: false));
+        emit(state.copyWith(myBooks: bookList, favBooks: favs));
+        StorageManager.instance.deleteValueWithKey<BookModel>(
+            key: "books", boxName: BoxConstants.books);
+        StorageManager.instance.deleteValueWithKey<BookModel>(
+            key: "fav_books", boxName: BoxConstants.books);
+        StorageManager.instance.addValueWithKey<BookModel>(
+            data: BookModel(data: bookList),
+            boxName: BoxConstants.books,
+            key: "books");
+        StorageManager.instance.addValueWithKey<BookModel>(
+            data: BookModel(data: favs),
+            boxName: BoxConstants.books,
+            key: "fav_books");
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      ScaffoldMessenger.of(event.context)
+          .showSnackBar(const SnackBar(content: Text("An error occurred")));
+    }
+  }
+
+  FutureOr<void> _addToFavs(AddToFavs event, Emitter<HomeState> emit) {
+    //add to favs list
+    //save it to local storage (favs list)
+    //set isfav to true
+    var booklist = state.myBooks.toList();
+    booklist.removeWhere((t) => t == event.book);
+    //booklist.add(event.book.copyWith(isFav: true));
+    var favs = state.favBooks.toList();
+    favs.add(event.book.copyWith(isFav: true));
+    StorageManager.instance.deleteValueWithKey<BookModel>(
+        key: "books", boxName: BoxConstants.books);
+    StorageManager.instance.addValueWithKey<BookModel>(
+        data: BookModel(data: booklist),
+        boxName: BoxConstants.books,
+        key: "books");
+    StorageManager.instance.addValueWithKey<BookModel>(
+        data: BookModel(data: favs),
+        boxName: BoxConstants.books,
+        key: "fav_books");
+    emit(state.copyWith(myBooks: booklist, favBooks: favs));
   }
 }

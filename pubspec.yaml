@@ -29,6 +29,8 @@ dependencies:
   #svg files
   flutter_svg: ^2.0.9
   internet_connection_checker: ^1.0.0+1
+  #add to favs animation
+  lottie: ^3.1.2
 
 dev_dependencies:
   flutter_test:
@@ -44,6 +46,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
+    - assets/json/
 
   # example:
   # fonts:

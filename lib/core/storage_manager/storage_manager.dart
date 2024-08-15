@@ -10,7 +10,7 @@ import '../constants/box_constants.dart';
 
 class StorageManager extends IStorageManager {
   static StorageManager? _cacheManager;
-  static StorageManager get cacheManager =>
+  static StorageManager get instance =>
       _cacheManager ??= StorageManager._init();
   StorageManager._init();
 

@@ -14,7 +14,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await StorageManager.cacheManager.setUpHive();
+  await StorageManager.instance.setUpHive();
   notificationInitialize();
   runApp(MultiBlocProvider(providers: [
     //blocs

@@ -61,13 +61,14 @@ class BookAdapter extends TypeAdapter<Book> {
       notes: (fields[8] as List?)?.cast<String>(),
       createdAt: fields[9] as DateTime?,
       villains: (fields[10] as List?)?.cast<Villain>(),
+      isFav: fields[11] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Book obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(1)
       ..write(obj.id)
       ..writeByte(2)
@@ -87,7 +88,9 @@ class BookAdapter extends TypeAdapter<Book> {
       ..writeByte(9)
       ..write(obj.createdAt)
       ..writeByte(10)
-      ..write(obj.villains);
+      ..write(obj.villains)
+      ..writeByte(11)
+      ..write(obj.isFav);
   }
 
   @override

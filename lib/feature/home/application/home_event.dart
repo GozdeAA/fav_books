@@ -11,4 +11,6 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.getAllBooks({required BuildContext context}) = GetAllBooks;
 
   const factory HomeEvent.getFavourites({required BuildContext context}) = GetFavourites;
+  const factory HomeEvent.addToFavs({required BuildContext context,required Book book,required List<Book> bookList}) = AddToFavs;
+  const factory HomeEvent.removeFromFavs({required BuildContext context,required Book book,required List<Book> bookList}) = RemoveFromFavs;
 }
