@@ -29,9 +29,9 @@ class HomePage extends StatelessWidget {
               IconButton(
                   onPressed: () {
                     Navigator.of(context).push(CupertinoPageRoute(
-                        builder: (context) => const SettingsPage()));
+                        builder: (context) => const SettingsPage(),),);
                   },
-                  icon: const Icon(Icons.settings))
+                  icon: const Icon(Icons.settings),),
             ],
           ),
           body: SafeArea(
@@ -48,30 +48,30 @@ class HomePage extends StatelessWidget {
                       .read<FavouritesBloc>()
                       .add(FavouritesEvent.getFavourites(context: context));
                   Navigator.of(context).push(CupertinoPageRoute(
-                      builder: (c) => const FavouritesPage()));
-                }),
+                      builder: (c) => const FavouritesPage(),),);
+                },),
                 if (state.myBooks.isNotEmpty)
                   booksList(context,
                       title: AppLocalizations.of(context)?.myBooks ?? "",
-                      bookList: state.myBooks),
+                      bookList: state.myBooks,),
                 if (state.fetchedBooks.isNotEmpty)
                   booksList(context,
                       title: AppLocalizations.of(context)?.availableBooks ?? "",
                       bookList: state.fetchedBooks,
-                      fetchedBooks: true),
+                      fetchedBooks: true,),
               ],
             ),
-          )),
+          ),),
         );
       },
     );
   }
 
-  Widget booksList(context,
+  Widget booksList(BuildContext context,
       {required String title,
       required List<Book> bookList,
       bool fetchedBooks = false,
-      Function()? onTap}) {
+      Function()? onTap,}) {
     return Flexible(
       child: GestureDetector(
         onTap: onTap,
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                  fontSize: 17.sp(context), fontWeight: FontWeight.bold),
+                  fontSize: 17.sp(context), fontWeight: FontWeight.bold,),
             ),
             SizedBox(height: 1.h(context)),
             if (bookList.isEmpty)
@@ -100,9 +100,9 @@ class HomePage extends StatelessWidget {
                             GestureDetector(
                               onTap: () => Navigator.push(
                                   context,
-                                  MaterialPageRoute(
+                                  CupertinoPageRoute(
                                       builder: (context) =>
-                                          DetailPage(book: bookList[i]))),
+                                          DetailPage(book: bookList[i]),),),
                               child: Container(
                                 width: 20.w(context),
                                 height: 10.h(context),
@@ -112,33 +112,31 @@ class HomePage extends StatelessWidget {
                                     maxHeight: 10.h(context), minHeight: 5.h(context)),*/
                                 decoration: BoxDecoration(
                                     border: Border.all(color: Colors.black38),
-                                    borderRadius: BorderRadius.circular(16)),
+                                    borderRadius: BorderRadius.circular(16),),
                                 child:
                                     SvgPicture.asset("assets/icons/book.svg"),
                               ),
                             ),
-                            bookList[i].isFav != null && bookList[i].isFav!
-                                ? GestureDetector(
+                            if (bookList[i].isFav != null && bookList[i].isFav!) GestureDetector(
                                     onTap: () => context.read<HomeBloc>().add(
                                         HomeEvent.removeFromFavs(
                                             context: context,
                                             book: bookList[i],
-                                            bookList: bookList)),
+                                            bookList: bookList,),),
                                     child: Lottie.asset(
                                         'assets/json/fav_anim.json',
                                         repeat: false,
-                                        height: 50),
-                                  )
-                                : !fetchedBooks
+                                        height: 50,),
+                                  ) else !fetchedBooks
                                     ? IconButton(
                                         onPressed: () {
                                           context.read<HomeBloc>().add(
                                               HomeEvent.addToFavs(
                                                   context: context,
                                                   book: bookList[i],
-                                                  bookList: bookList));
+                                                  bookList: bookList,),);
                                         },
-                                        icon: const Icon(CupertinoIcons.heart))
+                                        icon: const Icon(CupertinoIcons.heart),)
                                     : const SizedBox(),
                           ],
                         ),
@@ -148,10 +146,10 @@ class HomePage extends StatelessWidget {
                               bookList[i].title ?? "-",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                            ))
+                            ),),
                       ],
                     );
-                  }),
+                  },),
             ),
           ],
         ),

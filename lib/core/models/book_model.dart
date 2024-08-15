@@ -8,7 +8,8 @@ import 'package:hive/hive.dart';
 
 part 'book_model.g.dart';
 
-BookModel bookModelFromJson(String str) => BookModel.fromJson(json.decode(str));
+BookModel bookModelFromJson(String str) =>
+    BookModel.fromJson(json.decode(str as String) as Map<String, dynamic>);
 
 String bookModelToJson(BookModel data) => json.encode(data.toJson());
 
@@ -29,13 +30,15 @@ class BookModel {
       );
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
-        data: json["data"] == null
+        data: json['data'] == null
             ? []
-            : List<Book>.from(json["data"]!.map((x) => Book.fromJson(x))),
+            : List<Book>.from(json['data']!
+                    .map((x) => Book.fromJson(x as Map<String, dynamic>))
+                as Iterable),
       );
 
   Map<String, dynamic> toJson() => {
-        "data": data == null
+        'data': data == null
             ? []
             : List<dynamic>.from(data!.map((x) => x.toJson())),
       };
@@ -66,18 +69,19 @@ class Book {
   @HiveField(11)
   final bool? isFav;
 
-  Book(
-      {this.id,
-      this.year,
-      this.title,
-      this.handle,
-      this.publisher,
-      this.isbn,
-      this.pages,
-      this.notes,
-      this.createdAt,
-      this.villains,
-      this.isFav});
+  Book({
+    this.id,
+    this.year,
+    this.title,
+    this.handle,
+    this.publisher,
+    this.isbn,
+    this.pages,
+    this.notes,
+    this.createdAt,
+    this.villains,
+    this.isFav,
+  });
 
   Book copyWith({
     int? id,
@@ -93,49 +97,53 @@ class Book {
     List<Villain>? villains,
   }) =>
       Book(
-          id: id ?? this.id,
-          year: year ?? this.year,
-          title: title ?? this.title,
-          handle: handle ?? this.handle,
-          publisher: publisher ?? this.publisher,
-          isbn: isbn ?? this.isbn,
-          pages: pages ?? this.pages,
-          notes: notes ?? this.notes,
-          createdAt: createdAt ?? this.createdAt,
-          villains: villains ?? this.villains,
-          isFav: isFav ?? this.isFav);
+        id: id ?? this.id,
+        year: year ?? this.year,
+        title: title ?? this.title,
+        handle: handle ?? this.handle,
+        publisher: publisher ?? this.publisher,
+        isbn: isbn ?? this.isbn,
+        pages: pages ?? this.pages,
+        notes: notes ?? this.notes,
+        createdAt: createdAt ?? this.createdAt,
+        villains: villains ?? this.villains,
+        isFav: isFav ?? this.isFav,
+      );
 
   factory Book.fromJson(Map<String, dynamic> json) => Book(
-        id: json["id"],
-        year: json["Year"],
-        title: json["Title"],
-        handle: json["handle"],
-        publisher: json["Publisher"],
-        isbn: json["ISBN"],
-        pages: json["Pages"],
-        notes: json["Notes"] == null
+        id: json['id'] as int,
+        year: json['Year'] as int,
+        title: json['Title'] as String,
+        handle: json['handle'] as String,
+        publisher: json['Publisher'] as String,
+        isbn: json['ISBN'] as String,
+        pages: json['Pages'] as int,
+        notes: json['Notes'] == null
             ? []
-            : List<String>.from(json["Notes"]!.map((x) => x)),
-        createdAt: json["created_at"] == null
+            : List<String>.from(json['Notes']!.map((x) => x) as Iterable),
+        createdAt: json['created_at'] == null
             ? null
-            : DateTime.parse(json["created_at"]),
-        villains: json["villains"] == null
+            : DateTime.parse(json['created_at'] as String),
+        villains: json['villains'] == null
             ? []
             : List<Villain>.from(
-                json["villains"]!.map((x) => Villain.fromJson(x))),
+                json['villains']!
+                        .map((x) => Villain.fromJson(x as Map<String, dynamic>))
+                    as Iterable,
+              ),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "Year": year,
-        "Title": title,
-        "handle": handle,
-        "Publisher": publisher,
-        "ISBN": isbn,
-        "Pages": pages,
-        "Notes": notes == null ? [] : List<dynamic>.from(notes!.map((x) => x)),
-        "created_at": createdAt?.toIso8601String(),
-        "villains": villains == null
+        'id': id,
+        'Year': year,
+        'Title': title,
+        'handle': handle,
+        'Publisher': publisher,
+        'ISBN': isbn,
+        'Pages': pages,
+        'Notes': notes == null ? [] : List<dynamic>.from(notes!.map((x) => x)),
+        'created_at': createdAt?.toIso8601String(),
+        'villains': villains == null
             ? []
             : List<dynamic>.from(villains!.map((x) => x.toJson())),
       };
@@ -163,12 +171,12 @@ class Villain {
       );
 
   factory Villain.fromJson(Map<String, dynamic> json) => Villain(
-        name: json["name"],
-        url: json["url"],
+        name: json['name'] as String,
+        url: json['url'] as String,
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name,
-        "url": url,
+        'name': name,
+        'url': url,
       };
 }

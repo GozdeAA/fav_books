@@ -18,16 +18,16 @@ class DetailPage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(book.title ?? "-"),
+            title: Text(book.title ?? '-'),
             backgroundColor: AppColors.primary,
             centerTitle: true,
             actions: [
               IconButton(
                   onPressed: () {
                     Navigator.of(context).push(CupertinoPageRoute(
-                        builder: (context) => const SettingsPage()));
+                        builder: (context) => const SettingsPage(),),);
                   },
-                  icon: const Icon(Icons.settings))
+                  icon: const Icon(Icons.settings),),
             ],
           ),
           body: SafeArea(
@@ -37,51 +37,51 @@ class DetailPage extends StatelessWidget {
                     children: [
                       Table(
                           border: TableBorder.all(
-                              borderRadius: BorderRadius.circular(8)),
+                              borderRadius: BorderRadius.circular(8),),
                           children: [
                             buildTableRow(
                                 title:
-                                    AppLocalizations.of(context)?.title ?? "",
-                                content: book.title ?? "-"),
+                                    AppLocalizations.of(context)?.title ?? '',
+                                content: book.title ?? '-',),
                             //     if(book.createdAt!=null)
                             //    buildTableRow(title: "Created At",content: DateFormat("dd-MM-yyyy").format(book.createdAt!)),
                             if (book.pages != null)
                               buildTableRow(
                                   title:
-                                      AppLocalizations.of(context)?.pages ?? "",
-                                  content: book.pages.toString()),
+                                      AppLocalizations.of(context)?.pages ?? '',
+                                  content: book.pages.toString(),),
                             if (book.year != null)
                               buildTableRow(
                                   title:
-                                      AppLocalizations.of(context)?.title ?? "",
-                                  content: book.year.toString()),
+                                      AppLocalizations.of(context)?.title ?? '',
+                                  content: book.year.toString(),),
                             buildTableRow(
-                                title: "ISBN", content: book.isbn ?? "-"),
+                                title: 'ISBN', content: book.isbn ?? '-',),
                             if (book.villains != null &&
                                 book.villains!.isNotEmpty)
                               buildTableRow(
                                   title:
                                       AppLocalizations.of(context)?.villains ??
-                                          "",
+                                          '',
                                   content: book.villains!
                                       .map((e) => e.name)
-                                      .toString()),
+                                      .toString(),),
                             if (book.villains != null && book.notes!.isNotEmpty)
                               buildTableRow(
                                   title:
-                                      AppLocalizations.of(context)?.notes ?? "",
+                                      AppLocalizations.of(context)?.notes ?? '',
                                   content:
-                                      book.notes!.map((e) => e).toString()),
-                          ]),
+                                      book.notes!.map((e) => e).toString(),),
+                          ],),
                       if (book.isFav != null && book.isFav!)
                         TextButton(
                             onPressed: () {
                               context.read<DetailBloc>().add(
-                                  RemoveFromFavs(context: context, book: book));
+                                  RemoveFromFavs(context: context, book: book),);
                             },
                             child: Text(
                                 AppLocalizations.of(context)?.removeFromFavs ??
-                                    "")),
+                                    '',),),
                       if (book.isFav == null)
                         TextButton(
                             onPressed: () {
@@ -90,16 +90,16 @@ class DetailPage extends StatelessWidget {
                                   .add(AddToFavs(context: context, book: book));
                             },
                             child: Text(
-                                AppLocalizations.of(context)?.addToFavs ?? "")),
+                                AppLocalizations.of(context)?.addToFavs ?? '',),),
                       if (book.isFav != null && book.isFav!)
                         TextButton(
                             onPressed: () async {
                               await pickTime(context);
                             },
                             child: Text(
-                                AppLocalizations.of(context)?.setTimer ?? "")),
+                                AppLocalizations.of(context)?.setTimer ?? '',),),
                     ],
-                  ))),
+                  ),),),
         );
       },
     );
@@ -118,7 +118,7 @@ class DetailPage extends StatelessWidget {
     );
     if (time != null && context.mounted) {
       context.read<DetailBloc>().add(DetailEvent.setNotification(
-          context: context, book: book, hour: time.hour, minute: time.minute));
+          context: context, book: book, hour: time.hour, minute: time.minute,),);
     }
   }
 
@@ -132,7 +132,7 @@ class DetailPage extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(content),
-      )
-    ]);
+      ),
+    ],);
   }
 }

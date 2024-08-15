@@ -22,19 +22,19 @@ Future<void> main() async {
     //blocs
     BlocProvider(
         lazy: false,
-        create: (context) => ThemeBloc()..add(const InitialTheme())),
+        create: (context) => ThemeBloc()..add(const InitialTheme()),),
     BlocProvider(create: (context) => SettingsBloc()),
     BlocProvider(
         create: (context) => FavouritesBloc()
-          ..add(FavouritesEvent.getFavourites(context: context))),
+          ..add(FavouritesEvent.getFavourites(context: context)),),
     BlocProvider(
-        create: (context) => HomeBloc()..add(GetAllBooks(context: context))),
+        create: (context) => HomeBloc()..add(GetAllBooks(context: context)),),
     BlocProvider(create: (create) => DetailBloc()),
     BlocProvider(
         lazy: false,
         create: (context) =>
-            LocalizationBloc()..add(const InitialiseLocalization())),
-  ], child: const MyApp()));
+            LocalizationBloc()..add(const InitialiseLocalization()),),
+  ], child: const MyApp(),),);
 }
 
 notificationInitialize() {
@@ -48,15 +48,15 @@ notificationInitialize() {
             channelName: 'Basic notifications',
             channelDescription: 'Notification channel for basic tests',
             defaultColor: AppColors.primary,
-            ledColor: Colors.white)
+            ledColor: Colors.white,),
       ],
       // Channel groups are only visual and are not required
       channelGroups: [
         NotificationChannelGroup(
             channelGroupKey: 'basic_channel_group',
-            channelGroupName: 'Basic group')
+            channelGroupName: 'Basic group',),
       ],
-      debug: true);
+      debug: true,);
 }
 
 class MyApp extends StatefulWidget {
@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> {
         onNotificationDisplayedMethod:
             NotificationController.onNotificationDisplayedMethod,
         onDismissActionReceivedMethod:
-            NotificationController.onDismissActionReceivedMethod);
+            NotificationController.onDismissActionReceivedMethod,);
     super.initState();
   }
 
@@ -101,7 +101,7 @@ class _MyAppState extends State<MyApp> {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: const HomePage());
+                home: const HomePage(),);
           },
         );
       },

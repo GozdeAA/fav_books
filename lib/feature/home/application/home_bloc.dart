@@ -53,7 +53,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       var res = await HttpHelper.get("books");
       if (res.data != null) {
-        var fetchedBooks = BookModel.fromJson(res.data);
+        var fetchedBooks = BookModel.fromJson(res.data as Map<String,dynamic>);
         emit(state.copyWith(fetchedBooks: fetchedBooks.data ?? []));
         if (fetchedBooks.data != null && fetchedBooks.data!.isNotEmpty) {
           StorageManager.instance.deleteValueWithKey<BookModel>(
