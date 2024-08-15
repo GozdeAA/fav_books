@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
             title: Text(AppLocalizations.of(context)?.books ?? ''),
             backgroundColor: AppColors.primary,
