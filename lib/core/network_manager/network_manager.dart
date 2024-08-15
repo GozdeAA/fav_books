@@ -7,14 +7,6 @@ class HttpHelper {
 
   static Future<Dio> _getInstance() async {
     _client ??= Dio();
-
-    // header lar tanımlandı
-    Map<String, dynamic> headers = {};
-
-    //headers['Content-Type'] = 'application/json';
-    // headers['accept-language'] = "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7";
-
-    _client!.options.headers = headers;
     return _client!;
   }
 

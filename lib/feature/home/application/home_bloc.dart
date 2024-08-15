@@ -46,17 +46,26 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _fetchBooks(FetchAllBooks event, Emitter<HomeState> emit) async {
-    var res = await HttpHelper.get("books");
-    if (res.data != null) {
-      var fetchedBooks = BookModel.fromJson(res.data);
-      emit(state.copyWith(fetchedBooks: fetchedBooks.data ?? []));
-      if (fetchedBooks.data != null && fetchedBooks.data!.isNotEmpty) {
-        StorageManager.instance.deleteValueWithKey<BookModel>(
-            key: "books", boxName: BoxConstants.books);
-        StorageManager.instance.addValueWithKey(
-            data: fetchedBooks, boxName: BoxConstants.books, key: "books");
-        add(GetAllBooks(context: event.context));
+    try {
+      var res = await HttpHelper.get("books");
+      if (res.data != null) {
+        var fetchedBooks = BookModel.fromJson(res.data);
+        emit(state.copyWith(fetchedBooks: fetchedBooks.data ?? []));
+        if (fetchedBooks.data != null && fetchedBooks.data!.isNotEmpty) {
+          StorageManager.instance.deleteValueWithKey<BookModel>(
+              key: "books", boxName: BoxConstants.books);
+          StorageManager.instance.addValueWithKey(
+              data: fetchedBooks, boxName: BoxConstants.books, key: "books");
+          add(GetAllBooks(context: event.context));
+        }
+      } else {
+        ScaffoldMessenger.of(event.context)
+            .showSnackBar(SnackBar(content: Text("could not fetch books")));
       }
+    } catch (e) {
+      debugPrint(e.toString());
+      ScaffoldMessenger.of(event.context)
+          .showSnackBar(SnackBar(content: Text("could not fetch books")));
     }
   }
 

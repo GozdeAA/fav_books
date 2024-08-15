@@ -70,10 +70,14 @@ class DetailPage extends StatelessWidget {
                           ]),
                       if (book.isFav != null && book.isFav!)
                         TextButton(
-                            onPressed: () {}, child: Text("remove from favs")),
+                            onPressed: () {
+                              context.read<DetailBloc>().add(RemoveFromFavs(context: context, book: book));
+                            }, child: Text("remove from favs")),
                       if (book.isFav == null)
                         TextButton(
-                            onPressed: () {}, child: Text("Add to Favs")),
+                            onPressed: () {
+                              context.read<DetailBloc>().add(AddToFavs(context: context, book: book));
+                            }, child: Text("Add to Favs")),
                       if (book.isFav != null && book.isFav!)
                         TextButton(
                             onPressed: () async {

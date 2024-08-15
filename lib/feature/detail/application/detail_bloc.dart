@@ -3,7 +3,12 @@ import 'dart:async';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bloc/bloc.dart';
 import 'package:fav_books/core/storage_manager/storage_manager.dart';
+import 'package:fav_books/feature/detail/presentation/detail_page.dart';
+import 'package:fav_books/feature/favourites/application/favourites_bloc.dart';
+import 'package:fav_books/feature/home/application/home_bloc.dart';
+import 'package:fav_books/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/constants/box_constants.dart';
@@ -18,6 +23,8 @@ part 'detail_bloc.freezed.dart';
 class DetailBloc extends Bloc<DetailEvent, DetailState> {
   DetailBloc() : super(const DetailState.initial()) {
     on<SetNotification>(_setNotification);
+    on<AddToFavs>(_addToFavs);
+    on<RemoveFromFavs>(_removeFromFavs);
   }
 
   FutureOr<void> _setNotification(
@@ -44,5 +51,16 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
       ScaffoldMessenger.of(event.context).showSnackBar(
           const SnackBar(content: Text("Could not create notification")));
     }
+  }
+
+  FutureOr<void> _removeFromFavs(
+      RemoveFromFavs event, Emitter<DetailState> emit) {
+    event.context.read<HomeBloc>().add(HomeEvent.removeFromFavs(
+        context: event.context, book: event.book, bookList: []));
+  }
+
+  FutureOr<void> _addToFavs(AddToFavs event, Emitter<DetailState> emit) {
+    event.context.read<HomeBloc>().add(HomeEvent.addToFavs(
+        context: event.context, book: event.book, bookList: []));
   }
 }
