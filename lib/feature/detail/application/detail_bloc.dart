@@ -1,16 +1,11 @@
 import 'dart:async';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:bloc/bloc.dart';
 import 'package:fav_books/core/storage_manager/storage_manager.dart';
-import 'package:fav_books/feature/detail/presentation/detail_page.dart';
-import 'package:fav_books/feature/favourites/application/favourites_bloc.dart';
 import 'package:fav_books/feature/home/application/home_bloc.dart';
-import 'package:fav_books/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../../core/constants/box_constants.dart';
 import '../../../core/models/book_model.dart';
 
@@ -46,6 +41,11 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
               title: 'Daily book reminder',
               body: "${event.book.title} is here!",
             ));
+        ScaffoldMessenger.of(event.context).showSnackBar(const SnackBar(
+            content: Text(
+          "Notification has been set.",
+          style: TextStyle(color: Colors.green),
+        )));
       }
     } catch (e) {
       ScaffoldMessenger.of(event.context).showSnackBar(

@@ -2,5 +2,19 @@
     "title": "Başlık",
     "author":"Yazar",
     "books": "Kitaplar",
-    "settings":"Ayarlar"
+    "settings":"Ayarlar",
+    "pages":"Sayfa",
+    "villains":"Kötüler",
+    "notes":"Notlar",
+    "removeFromFavs":"Favorilerden kaldır",
+    "addToFavs": "Favorilere ekle",
+    "setTimer": "Zamanlayıcı ayarla",
+    "noBooks":"Mevcut kitap yok",
+    "favBooks":"Favori kitaplar",
+    "myBooks": "Kitaplarım",
+    "availableBooks":"Mevcut Kitaplar",
+    "favs": "Favorilerim",
+    "lang": "Dil",
+    "select": "Seç",
+    "theme":"Tema"
 }

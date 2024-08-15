@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:fav_books/feature/settings/theme/application/theme_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,6 +27,6 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   }
 
   FutureOr<void> _changeTheme(ChangeTheme event, Emitter<SettingsState> emit) {
-    event.context.read<ThemeBloc>().add(ChangeAppTheme());
+    event.context.read<ThemeBloc>().add(const ChangeAppTheme());
   }
 }

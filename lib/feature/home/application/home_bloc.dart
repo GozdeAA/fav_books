@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:bloc/bloc.dart';
+
 import 'package:fav_books/core/constants/box_constants.dart';
 import 'package:fav_books/core/models/book_model.dart';
 import 'package:fav_books/core/network_manager/network_manager.dart';
 import 'package:fav_books/core/storage_manager/storage_manager.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -36,12 +37,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     add(GetLocalBooks(context: event.context));
     if (await InternetConnectionChecker().hasConnection) {
       emit(state.copyWith(noConnection: false));
-      add(FetchAllBooks(context: event.context));
+      if (event.context.mounted) {
+        add(FetchAllBooks(context: event.context));
+      }
     } else {
       emit(state.copyWith(noConnection: true));
-      //fixme
-      ScaffoldMessenger.of(event.context).showSnackBar(
-          const SnackBar(content: Text("No internet connection")));
+      if (event.context.mounted) {
+        ScaffoldMessenger.of(event.context).showSnackBar(
+            const SnackBar(content: Text("No internet connection")));
+      }
     }
   }
 
@@ -56,16 +60,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               key: "books", boxName: BoxConstants.books);
           StorageManager.instance.addValueWithKey(
               data: fetchedBooks, boxName: BoxConstants.books, key: "books");
-          add(GetAllBooks(context: event.context));
+          if (event.context.mounted) {
+            add(GetAllBooks(context: event.context));
+          }
         }
       } else {
-        ScaffoldMessenger.of(event.context)
-            .showSnackBar(SnackBar(content: Text("could not fetch books")));
+        if (event.context.mounted) {
+          ScaffoldMessenger.of(event.context)
+              .showSnackBar(const SnackBar(content: Text("could not fetch books")));
+        }
       }
     } catch (e) {
       debugPrint(e.toString());
-      ScaffoldMessenger.of(event.context)
-          .showSnackBar(SnackBar(content: Text("could not fetch books")));
+      if (event.context.mounted) {
+        ScaffoldMessenger.of(event.context).showSnackBar(
+            const SnackBar(content: Text("could not fetch books")));
+      }
     }
   }
 
@@ -113,12 +123,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> _addToFavs(AddToFavs event, Emitter<HomeState> emit) {
-    //add to favs list
-    //save it to local storage (favs list)
-    //set isfav to true
     var booklist = state.myBooks.toList();
     booklist.removeWhere((t) => t == event.book);
-    //booklist.add(event.book.copyWith(isFav: true));
     var favs = state.favBooks.toList();
     favs.add(event.book.copyWith(isFav: true));
     StorageManager.instance.deleteValueWithKey<BookModel>(

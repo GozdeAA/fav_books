@@ -2,6 +2,19 @@
     "title": "Title",
     "author":"Author",
     "books": "Books",
-    "settings":"Settings"
-
+    "settings":"Settings",
+    "pages":"Pages",
+    "villains":"Villains",
+    "notes":"Notes",
+    "removeFromFavs":"Remove from favourites",
+    "addToFavs": "Add to favourites",
+    "setTimer": "Set timer",
+    "noBooks":"No books available",
+    "favBooks":"Favourite Books",
+    "myBooks": "My Books",
+    "availableBooks":"Available Books",
+    "favs": "Favourites",
+    "lang": "Language",
+    "select": "Select",
+    "theme":"Theme"
 }

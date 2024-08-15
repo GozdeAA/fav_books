@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
               children: [
                 // if (state.favBooks.isNotEmpty)
                 booksList(context,
-                    title: "Favourite books",
+                    title: AppLocalizations.of(context)?.favBooks ?? "",
                     bookList: state.favBooks, onTap: () {
                   context
                       .read<FavouritesBloc>()
@@ -52,10 +52,11 @@ class HomePage extends StatelessWidget {
                 }),
                 if (state.myBooks.isNotEmpty)
                   booksList(context,
-                      title: "My books", bookList: state.myBooks),
+                      title: AppLocalizations.of(context)?.myBooks ?? "",
+                      bookList: state.myBooks),
                 if (state.fetchedBooks.isNotEmpty)
                   booksList(context,
-                      title: "Available books",
+                      title: AppLocalizations.of(context)?.availableBooks ?? "",
                       bookList: state.fetchedBooks,
                       fetchedBooks: true),
               ],
@@ -83,7 +84,8 @@ class HomePage extends StatelessWidget {
                   fontSize: 17.sp(context), fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 1.h(context)),
-            if (bookList.isEmpty) Center(child: Text("No books available")),
+            if (bookList.isEmpty)
+              Center(child: Text(AppLocalizations.of(context)?.noBooks ?? "")),
             Expanded(
               child: ListView.builder(
                   itemCount: bookList.length,

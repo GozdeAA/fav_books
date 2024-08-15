@@ -4,8 +4,6 @@ import 'package:fav_books/core/storage_manager/storage_manager.dart';
 import 'package:fav_books/feature/detail/presentation/detail_page.dart';
 import 'package:fav_books/main.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 import '../models/book_model.dart';
 
 class NotificationController {
@@ -36,7 +34,6 @@ class NotificationController {
       ReceivedAction receivedAction) async {
     var res = StorageManager.instance.getValueWithKey<Book>(
         boxName: BoxConstants.favBooks, key: receivedAction.id.toString());
-    print(res);
     if (MyApp.navigatorKey.currentContext != null) {
       Navigator.push(MyApp.navigatorKey.currentContext!,
           CupertinoPageRoute(builder: (c) => DetailPage(book: res!)));

@@ -24,14 +24,14 @@ class SettingsPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Language"),
+                    Text(AppLocalizations.of(context)?.lang ?? ""),
                     DropdownMenu<String>(
-                        hintText: "Select",
+                        hintText: AppLocalizations.of(context)?.select ?? "",
                         onSelected: (v) {
                           context.read<SettingsBloc>().add(
                               SettingsEvent.changeLanguage(v ?? "tr", context));
                         },
-                        dropdownMenuEntries: [
+                        dropdownMenuEntries: const [
                           DropdownMenuEntry(value: "tr", label: "Türkçe"),
                           DropdownMenuEntry(value: "en", label: "English"),
                         ])
@@ -40,7 +40,7 @@ class SettingsPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Theme"),
+                    Text(AppLocalizations.of(context)?.theme ?? ""),
                     IconButton(
                         onPressed: () {
                           context

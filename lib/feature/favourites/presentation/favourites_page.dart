@@ -1,13 +1,11 @@
 import 'package:fav_books/core/extensions/sizer_extension.dart';
 import 'package:fav_books/feature/favourites/application/favourites_bloc.dart';
-import 'package:fav_books/feature/favourites/application/favourites_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../core/theme/app_colors.dart';
-import '../../settings/localization/application/localization_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../settings/page/presentation/settings_page.dart';
 
 class FavouritesPage extends StatelessWidget {
@@ -19,14 +17,14 @@ class FavouritesPage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text("Favourites"),
+            title: Text(AppLocalizations.of(context)?.favs ?? ""),
             backgroundColor: AppColors.primary,
             centerTitle: true,
             actions: [
               IconButton(
                   onPressed: () {
                     Navigator.of(context).push(CupertinoPageRoute(
-                        builder: (context) => SettingsPage()));
+                        builder: (context) => const SettingsPage()));
                   },
                   icon: const Icon(Icons.settings))
             ],
@@ -91,7 +89,8 @@ class FavouritesPage extends StatelessWidget {
                           ],
                         );
                       })
-                  : const Center(child: Text("No Books Available")),
+                  : Center(
+                      child: Text(AppLocalizations.of(context)?.noBooks ?? "")),
             ),
           )),
         );

@@ -24,10 +24,12 @@ Future<void> main() async {
         lazy: false,
         create: (context) => ThemeBloc()..add(const InitialTheme())),
     BlocProvider(create: (context) => SettingsBloc()),
-    BlocProvider(create: (context)=>FavouritesBloc()..add(FavouritesEvent.getFavourites(context: context))),
+    BlocProvider(
+        create: (context) => FavouritesBloc()
+          ..add(FavouritesEvent.getFavourites(context: context))),
     BlocProvider(
         create: (context) => HomeBloc()..add(GetAllBooks(context: context))),
-    BlocProvider(create: (create)=>DetailBloc()),
+    BlocProvider(create: (create) => DetailBloc()),
     BlocProvider(
         lazy: false,
         create: (context) =>
@@ -58,7 +60,9 @@ notificationInitialize() {
 }
 
 class MyApp extends StatefulWidget {
-  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
+
   const MyApp({super.key});
 
   @override
@@ -66,17 +70,19 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     AwesomeNotifications().setListeners(
-        onActionReceivedMethod:  NotificationController.onActionReceivedMethod,
-        onNotificationCreatedMethod:    NotificationController.onNotificationCreatedMethod,
-        onNotificationDisplayedMethod:  NotificationController.onNotificationDisplayedMethod,
-        onDismissActionReceivedMethod:  NotificationController.onDismissActionReceivedMethod
-    );
+        onActionReceivedMethod: NotificationController.onActionReceivedMethod,
+        onNotificationCreatedMethod:
+            NotificationController.onNotificationCreatedMethod,
+        onNotificationDisplayedMethod:
+            NotificationController.onNotificationDisplayedMethod,
+        onDismissActionReceivedMethod:
+            NotificationController.onDismissActionReceivedMethod);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeState>(
@@ -95,7 +101,7 @@ class _MyAppState extends State<MyApp> {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: HomePage());
+                home: const HomePage());
           },
         );
       },
