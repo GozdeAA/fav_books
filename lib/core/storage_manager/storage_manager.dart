@@ -1,5 +1,3 @@
-
-
 import 'package:fav_books/core/models/book_model.dart';
 import 'package:fav_books/core/storage_manager/i_storage_manager.dart';
 import 'package:flutter/foundation.dart';
@@ -10,8 +8,10 @@ import '../constants/box_constants.dart';
 
 class StorageManager extends IStorageManager {
   static StorageManager? _cacheManager;
+
   static StorageManager get instance =>
       _cacheManager ??= StorageManager._init();
+
   StorageManager._init();
 
   @override
@@ -22,7 +22,7 @@ class StorageManager extends IStorageManager {
     Hive.registerAdapter(VillainAdapter());
 
     await Hive.openBox<BookModel>(BoxConstants.books);
-
+    await Hive.openBox<Book>(BoxConstants.favBooks);
   }
 
   initHive() async {

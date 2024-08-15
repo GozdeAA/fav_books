@@ -1,5 +1,6 @@
 import 'package:fav_books/core/storage_manager/storage_manager.dart';
 import 'package:fav_books/core/theme/app_colors.dart';
+import 'package:fav_books/feature/detail/application/detail_bloc.dart';
 import 'package:fav_books/feature/favourites/application/favourites_bloc.dart';
 import 'package:fav_books/feature/home/application/home_bloc.dart';
 import 'package:fav_books/feature/home/presentation/home_page.dart';
@@ -26,6 +27,7 @@ Future<void> main() async {
     BlocProvider(create: (context)=>FavouritesBloc()..add(FavouritesEvent.getFavourites(context: context))),
     BlocProvider(
         create: (context) => HomeBloc()..add(GetAllBooks(context: context))),
+    BlocProvider(create: (create)=>DetailBloc()),
     BlocProvider(
         lazy: false,
         create: (context) =>
@@ -40,7 +42,7 @@ notificationInitialize() {
       [
         NotificationChannel(
             channelGroupKey: 'basic_channel_group',
-            channelKey: 'testo',
+            channelKey: 'bookz',
             channelName: 'Basic notifications',
             channelDescription: 'Notification channel for basic tests',
             defaultColor: AppColors.primary,
@@ -56,6 +58,7 @@ notificationInitialize() {
 }
 
 class MyApp extends StatefulWidget {
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   const MyApp({super.key});
 
   @override
@@ -82,6 +85,7 @@ class _MyAppState extends State<MyApp> {
           builder: (context, state) {
             return MaterialApp(
                 title: 'Favourite Books',
+                navigatorKey: MyApp.navigatorKey,
                 theme: themeState.currentTheme,
                 locale: state.locale,
                 supportedLocales: AppLocalizations.supportedLocales,

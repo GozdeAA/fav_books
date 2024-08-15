@@ -1,4 +1,6 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:fav_books/core/constants/box_constants.dart';
+import 'package:fav_books/core/storage_manager/storage_manager.dart';
 import 'package:fav_books/feature/detail/presentation/detail_page.dart';
 import 'package:fav_books/main.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,9 +34,13 @@ class NotificationController {
   @pragma("vm:entry-point")
   static Future<void> onActionReceivedMethod(
       ReceivedAction receivedAction) async {
-
-    //todo set book
-    // Navigator.push(context, CupertinoPageRoute(builder: (c) => DetailPage(book: Book())));
+    var res = StorageManager.instance.getValueWithKey<Book>(
+        boxName: BoxConstants.favBooks, key: receivedAction.id.toString());
+    print(res);
+    if (MyApp.navigatorKey.currentContext != null) {
+      Navigator.push(MyApp.navigatorKey.currentContext!,
+          CupertinoPageRoute(builder: (c) => DetailPage(book: res!)));
+    }
     // Navigate into pages, avoiding to open the notification details page over another details page already opened
 /*    MyApp.navigatorKey.currentState?.pushNamedAndRemoveUntil(
         '/notification-page',
