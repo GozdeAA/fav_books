@@ -16,7 +16,7 @@ import 'package:lottie/lottie.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
